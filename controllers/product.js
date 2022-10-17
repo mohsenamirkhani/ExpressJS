@@ -19,9 +19,11 @@ exports.postAddProducts = (req, res) => {
 
 exports.getProducts = (req, res, next) => {
   // res.sendFile(path.join(rootDir, "views", "shop.html"));
-  res.render("shop", {
-    prods: ProductModel.fetch(),
-    pageTitle: "My Shop Page",
-    path: "/",
-  });
+  ProductModel.fetch(products => {
+    res.render("shop", {
+      prods: products,
+      pageTitle: "My Shop Page",
+      path: "/",
+    });
+  })
 };
