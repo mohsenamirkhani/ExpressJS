@@ -1,26 +1,17 @@
-const path = require("path");
+// const path = require("path");
+// const rootDir = require("../helpers/path");
 
 const express = require("express");
 
-const rootDir = require("../helpers/path");
+const productsController = require('../controllers/product');
 
 //app.get , app.post , app.put and app.delete are the other forms of app.use but only triggers for that specific method
 const router = express.Router();
 
-const products = [];
-
 // /admin/add-product => GET
-router.get("/add-product", (req, res, next) => {
-  // const absolutPath = path.join(rootDir, "views", "add-product.html");
-  // res.sendFile(absolutPath);
-  res.render('add-product', {pageTitle: 'Add Product', path: '/admin/add-product'})
-});
+router.get("/add-product", productsController.getAddProducts);
 
 // /admin/add-product => POST
-router.post("/add-product", (req, res) => {
-  const body = req.body;
-  products.push(body);
-  res.redirect("/");
-});
+router.post("/add-product", productsController.postAddProducts);
 
-module.exports = { routes: router, products };
+module.exports = router;
