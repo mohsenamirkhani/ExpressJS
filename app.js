@@ -8,7 +8,8 @@ const shopRoute = require("./routes/shop");
 
 const app = express();
 
-app.set("view engine", "pug");
+// app.set("view engine", "pug");
+app.set("view engine", "ejs");
 
 // this line is for declearing the directory of the views,
 //but if the templates are in the views folder as current location of them this line is not needed
