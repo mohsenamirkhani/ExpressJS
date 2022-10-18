@@ -1,21 +1,18 @@
-// const path = require("path");
-// const rootDir = require("../helpers/path");
+const path = require('path');
 
-const express = require("express");
+const express = require('express');
 
-const productsController = require('../controllers/product');
+const adminController = require('../controllers/admin');
 
-//app.get , app.post , app.put and app.delete are the other forms of app.use but only triggers for that specific method
 const router = express.Router();
 
 // /admin/add-product => GET
-router.get("/add-product", productsController.getAddProducts);
+router.get('/add-product', adminController.getAddProduct);
+
+// /admin/products => GET
+router.get('/products', adminController.getProducts);
 
 // /admin/add-product => POST
-router.post("/add-product", productsController.postAddProducts);
-
-router.get("/products", productsController.getAdminProducts)
-
-router.get("/edit-product", productsController.getEditProduct)
+router.post('/add-product', adminController.postAddProduct);
 
 module.exports = router;

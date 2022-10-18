@@ -1,26 +1,23 @@
-const path = require("path");
+const path = require('path');
 
-const express = require("express");
-const bodyParser = require("body-parser");
+const express = require('express');
+const bodyParser = require('body-parser');
 
-const adminRoute = require("./routes/admin");
-const shopRoute = require("./routes/shop");
 const errorController = require('./controllers/error');
 
 const app = express();
 
-// app.set("view engine", "pug");
-app.set("view engine", "ejs");
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 
-// this line is for declearing the directory of the views,
-//but if the templates are in the views folder as current location of them this line is not needed
-app.set("views", "views");
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use("/admin", adminRoute);
-app.use(shopRoute);
+app.use('/admin', adminRoutes);
+app.use(shopRoutes);
 
 app.use(errorController.get404);
 
